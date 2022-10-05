@@ -1,20 +1,40 @@
 #include <Arduino.h>
-#include <ServoESP32.h> 
+/*
+ * This ESP32 code is created by esp32io.com
+ *
+ * This ESP32 code is released in the public domain
+ *
+ * For more detail (instruction and wiring diagram), visit https://esp32io.com/tutorials/esp32-servo-motor-controlled-by-potentiometer
+ */
 
-static const int servoPin=4;
-static const int potaentiometerPin=15;
+#include <Servo.h>
 
-Servo_ESP32 servo1;
+#define PIN_POTENTIOMETER 12 // ESP32 pin GIOP36 (ADC0) onnected to potentiometer
+#define PIN_SERVO         4 // ESP32 pin GIOP26 onnected to servo motor
 
-void setup(){
+Servo myServo;  // create servo object to control a servo
 
-    Serial.begin(115200);
-    servo1.attach(servoPin);  
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+
+  myServo.attach(PIN_SERVO);  // attaches ESP32 pin to the servo object
 }
-void loop(){
 
-    int servoPosition = map(analogRead(potaentiometerPin),0,4096,0,180);
-    servo1.write(servoPosition);
-    Serial.println(servoPosition);
-    delay(20);
+void loop() {
+  // reads the value of the potentiometer (value between 0 and 4095)
+  int analogValue = analogRead(PIN_POTENTIOMETER);
+
+  // scales it to use it with the servo (value between 0 and 180)
+  int angle = map(analogValue, 0, 4095, 0, 180);
+
+  // sets the servo position according to the scaled value
+  myServo.write(angle);
+
+  // print out the value
+  Serial.print("Analog value: ");
+  Serial.print(analogValue);
+  Serial.print(" => Angle: ");
+  Serial.println(angle);
+  delay(100);
 }
