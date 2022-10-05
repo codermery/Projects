@@ -1,1 +1,2 @@
-print('hello world aw dogdu gunesım')
+print('tık yakalıyorum moodumu had bakalım')
+
