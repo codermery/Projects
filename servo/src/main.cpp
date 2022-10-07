@@ -25,7 +25,7 @@ void loop() {
   // reads the value of the potentiometer (value between 0 and 4095)
   int analogValue = analogRead(PIN_POTENTIOMETER);
 
-  // scales it to use it with the servo (value between 0 and 180)
+  // scales it to use it with the servo (value between 0 and 180) //map(value, fromLow, fromHigh, toLow, toHigh)
   int angle = map(analogValue, 0, 4095, 0, 180);
 
   // sets the servo position according to the scaled value
