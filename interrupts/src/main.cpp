@@ -64,7 +64,7 @@ void setup() {
   pinMode(motionSensor, INPUT_PULLUP);
   pinMode(analog_pin, INPUT_PULLUP);
   //pinMode(situation,OUTPUT);
-  // Set motionSensor pin as interrupt, assign interrupt function and set mode RISING
+  // Set motionSensor pin as interrupt, assign interrupt function and set mode FALLING
   //attachInterrupt(digitalPinToInterrupt(motionSensor), detectsMovement, FALLING);
 
   // Set LED to LOW
